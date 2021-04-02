@@ -89,6 +89,10 @@ class Print
     size_t println(const Printable&);
     size_t println(void);
 
+    // EFP3 - Add printf() to make life so much easier...
+    size_t printf(const char *format, ...);
+    size_t printf_P(const char *format, ...);
+
     virtual void flush() { /* Empty implementation for backward compatibility */ }
 };
 
