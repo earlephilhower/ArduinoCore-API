@@ -99,11 +99,29 @@ typedef const void* uint_farptr_t;
 #define sprintf_P(s, f, ...) sprintf((s), (f), __VA_ARGS__)
 #define snprintf_P(s, f, ...) snprintf((s), (f), __VA_ARGS__)
 
+#if 0
+// Requires natural aligned addresses
 #define pgm_read_byte(addr) (*(const unsigned char *)(addr))
 #define pgm_read_word(addr) (*(const unsigned short *)(addr))
 #define pgm_read_dword(addr) (*(const unsigned long *)(addr))
 #define pgm_read_float(addr) (*(const float *)(addr))
 #define pgm_read_ptr(addr) (*(void *const *)(addr))
+#else
+// Supports misaligned addresses
+#define pgm_read_byte(addr) (*(const unsigned char *)(addr))
+#define pgm_read_word(addr) ((unsigned short)(pgm_read_byte((intptr_t)addr) | (pgm_read_byte((intptr_t)addr + 1) << 8)))
+#define pgm_read_dword(addr) ((unsigned long)(pgm_read_byte((intptr_t)addr) | (pgm_read_byte((intptr_t)addr + 1) << 8)) | \
+                                             (pgm_read_byte((intptr_t)addr + 2) << 16) | (pgm_read_byte((intptr_t)addr + 3) << 24))
+#define pgm_read_ptr(addr) ((void *)pgm_read_dword(addr))
+static inline float pgm_read_float(const void *addr) {
+    union {
+        void *p;
+        float f;
+    } x;
+    x.p = pgm_read_ptr(addr);
+    return x.f;
+}
+#endif
 
 #define pgm_read_byte_near(addr) pgm_read_byte(addr)
 #define pgm_read_word_near(addr) pgm_read_word(addr)
