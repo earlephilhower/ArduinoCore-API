@@ -98,6 +98,8 @@ typedef const void* uint_farptr_t;
 
 #define sprintf_P(s, f, ...) sprintf((s), (f), __VA_ARGS__)
 #define snprintf_P(s, f, ...) snprintf((s), (f), __VA_ARGS__)
+#define vsprintf_P(s, f, ...) vsprintf((s), (f), __VA_ARGS__)
+#define vsnprintf_P(s, f, ...) vsnprintf((s), (f), __VA_ARGS__)
 
 #if 0
 // Requires natural aligned addresses
