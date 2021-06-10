@@ -39,14 +39,14 @@ TEST_CASE ("Testing String::replace(char, char) when string contains elements = 
   REQUIRE(str == "H3ll0 Ardu1n0!");
 }
 
-TEST_CASE ("Testing String::replace(String, String) when string does not constain subtr 'find'", "[String-replace-04]")
+TEST_CASE ("Testing String::replace(String, String) when string does not contain substr 'find'", "[String-replace-04]")
 {
   arduino::String str("Hello Arduino!");
   str.replace(arduino::String("Zulu"), arduino::String("11"));
   REQUIRE(str == "Hello Arduino!");
 }
 
-TEST_CASE ("Testing String::replace(String, String) when string constains subtr 'find'", "[String-replace-05]")
+TEST_CASE ("Testing String::replace(String, String) when string contains substr 'find'", "[String-replace-05]")
 {
   arduino::String str("Hello Arduino!");
   str.replace(arduino::String("ll"), arduino::String("11"));

@@ -30,7 +30,7 @@ TEST_CASE ("Testing String::trim with space at the end", "[String-trim-02]")
   REQUIRE(str == "hello");
 }
 
-TEST_CASE ("Testing String::trim with space at both beginng and end", "[String-trim-03]")
+TEST_CASE ("Testing String::trim with space at both beginning and end", "[String-trim-03]")
 {
   arduino::String str("  hello  ");
   str.trim();

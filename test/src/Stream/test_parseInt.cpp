@@ -14,6 +14,8 @@
  * TEST CODE
  **************************************************************************************/
 
+using namespace arduino;
+
 TEST_CASE ("Testing parseInt(LookaheadMode lookahead = SKIP_ALL, char ignore = NO_IGNORE_CHAR)", "[Stream-parseInt-01]")
 {
   StreamMock mock;

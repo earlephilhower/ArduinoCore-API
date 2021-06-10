@@ -25,7 +25,7 @@ TEST_CASE ("Testing readBytes(char *buffer, size_t length)", "[Stream-readBytes-
     REQUIRE(mock.readBytes(buf, sizeof(buf)) == 0);
   }
 
-  WHEN ("the stream contains less data then we want to read")
+  WHEN ("the stream contains less data than we want to read")
   {
     char buf[32] = {0};
     char const str[] = "some stream content";
@@ -36,7 +36,7 @@ TEST_CASE ("Testing readBytes(char *buffer, size_t length)", "[Stream-readBytes-
     REQUIRE(mock.readString() == arduino::String(""));
   }
 
-  WHEN ("the stream contains more data then we want to read")
+  WHEN ("the stream contains more data than we want to read")
   {
     char buf[5] = {0};
     mock << "some stream content";
