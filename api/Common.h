@@ -16,10 +16,11 @@ typedef enum {
 } PinStatus;
 
 typedef enum {
-  INPUT           = 0x0,
-  OUTPUT          = 0x1,
-  INPUT_PULLUP    = 0x2,
-  INPUT_PULLDOWN  = 0x3,
+  INPUT            = 0x0,
+  OUTPUT           = 0x1,
+  INPUT_PULLUP     = 0x2,
+  INPUT_PULLDOWN   = 0x3,
+  OUTPUT_OPENDRAIN = 0x4,
 } PinMode;
 
 typedef enum {
@@ -65,7 +66,7 @@ typedef void (*voidFuncPtrParam)(void*);
 #define bitSet(value, bit) ((value) |= (1UL << (bit)))
 #define bitClear(value, bit) ((value) &= ~(1UL << (bit)))
 #define bitToggle(value, bit) ((value) ^= (1UL << (bit)))
-#define bitWrite(value, bit, bitvalue) (bitvalue ? bitSet(value, bit) : bitClear(value, bit))
+#define bitWrite(value, bit, bitvalue) ((bitvalue) ? bitSet((value), (bit)) : bitClear((value), (bit)))
 
 #ifndef bit
 #define bit(b) (1UL << (b))
