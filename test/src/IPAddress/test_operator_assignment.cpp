@@ -29,5 +29,6 @@ TEST_CASE ("Testing IPAddress::operator = (uint32_t a)", "[IPAddress-Operator-=-
   uint32_t const ip2 = 192 | (168 << 8) | (1 << 16) | (2 << 24);
 
   ip1 = ip2;
+  // NOTE: Only correct on little-endian systems
   REQUIRE(ip1 == arduino::IPAddress(192,168,1,2));
 }

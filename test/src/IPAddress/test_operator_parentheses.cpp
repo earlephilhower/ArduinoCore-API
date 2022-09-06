@@ -19,5 +19,6 @@ TEST_CASE ("Testing IPAddress::operator uint32_t() const", "[IPAddress-Operator-
   arduino::IPAddress ip(129,168,1,2);
   uint32_t const val_expected = ip;
   uint32_t const val_actual = (129 | (168 << 8) | (1 << 16) | (2 << 24));
+  // NOTE: Only correct on little-endian systems
   REQUIRE(val_expected == val_actual);
 }
