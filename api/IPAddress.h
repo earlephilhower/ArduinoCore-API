@@ -67,6 +67,8 @@ public:
      // Default IPv4
     IPAddress(const uint8_t *address);
     IPAddress(IPType ip_type, const uint8_t *address);
+    // If IPv4 fails tries IPv6 see fromString function
+    IPAddress(const char *address);
 
     bool fromString(const char *address);
     bool fromString(const String &address) { return fromString(address.c_str()); }
@@ -90,10 +92,13 @@ public:
     IPAddress& operator=(const uint8_t *address);
     // NOTE: IPv4 only; see implementation note
     IPAddress& operator=(uint32_t address);
+    // If IPv4 fails tries IPv6 see fromString function
+    IPAddress& operator=(const char *address);
 
     virtual size_t printTo(Print& p) const;
+    String toString() const;
 
-    IPType type() { return _type; }
+    IPType type() const { return _type; }
 
     friend class UDP;
     friend class Client;
@@ -106,6 +111,8 @@ public:
 protected:
     bool fromString4(const char *address);
     bool fromString6(const char *address);
+    String toString4() const;
+    String toString6() const;
 };
 
 extern const IPAddress IN6ADDR_ANY;
