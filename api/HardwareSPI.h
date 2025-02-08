@@ -111,6 +111,9 @@ class HardwareSPI
     virtual uint16_t transfer16(uint16_t data) = 0;
     virtual void transfer(void *buf, size_t count) = 0;
 
+    // EFP3 - Additional block-based versions we implement
+    virtual void transfer(const void *txbuf, void *rxbuf, size_t count) = 0;
+
     // Transaction Functions
     virtual void usingInterrupt(int interruptNumber) = 0;
     virtual void notUsingInterrupt(int interruptNumber) = 0;
