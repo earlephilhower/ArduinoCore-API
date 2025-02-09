@@ -104,3 +104,5 @@ class HardwareSerial : public Stream
 extern void serialEventRun(void) __attribute__((weak));
 
 }
+
+using arduino::HardwareSerial;
